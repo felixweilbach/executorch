@@ -300,7 +300,7 @@ def test_cond_u55_INT(case: Callable[[], tuple[torch.nn.Module, tuple]]):
         "multiple_one_arg_one_output": "Segfault when transpose goes into cond. MLBEDSW-11416.",
     },
 )
-@common.XfailIfNoCorstone320
+@common.XfailIfNoCorstone320.with_args(raises=None)
 def test_cond_u85_INT(case: Callable[[], tuple[torch.nn.Module, tuple]]):
     module, example_inputs = case()
     pipeline = EthosU85PipelineINT[tuple](module, example_inputs, aten_op, exir_op)
